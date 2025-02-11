@@ -10,7 +10,6 @@
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -18,12 +17,10 @@
 
     <dependencies>
 
-
         <dependency>
-            <groupId>com.walterjwhite.java.modules.csv.modules</groupId>
-            <artifactId>apache-commons-csv</artifactId>
-            <version>0.0.17</version>
-            <type>pom</type>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-csv</artifactId>
+            <version>1.13.0</version>
         </dependency>
 
     </dependencies>

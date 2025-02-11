@@ -8,7 +8,13 @@ import java.time.Month;
 import java.time.MonthDay;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.time.LocalDate;
+import java.io.*;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+
+import org.apache.commons.csv.*;
 
 public class CSVEventProvider implements EventProvider {
     private List<Event> events;
@@ -25,20 +31,50 @@ public class CSVEventProvider implements EventProvider {
         // You have been warned! The next version will fix this.
         Path path = Paths.get(fileName);
         try {
-            List<String> lines = Files.readAllLines(path);
 
-            for (String line : lines) {
-                this.events.add(makeEvent(line));
+            final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+            // Check if we can access the file
+            try (Reader reader = new FileReader(fileName);
+                CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT)) {
+
+                // Go through every record of the CSV file
+                for (CSVRecord record : csvParser) {
+                    String dt = record.get(0);
+                    LocalDate date = LocalDate.parse(dt, dtf);
+                    Category category = null;
+
+                    // Handling category parsing and split it to String array
+                    String cat = record.get(2);
+                    String[] cat1 = cat.split("/");
+
+                    // Check if there is 2 categories, if not, use null as a second category
+                    if (cat1.length == 2) {
+                        category = new Category(cat1[0], cat1[1]);
+                    } else if (cat1.length == 1) {
+                        category = new Category(cat1[0], null);
+                    }
+
+                    String description = record.get(1);
+
+                    // Create event and add it to the list
+                    Event event1 = new Event(date, description, category);
+                    this.events.add(event1);
+                }
+
+
+            } catch (FileNotFoundException e) {
+                throw new IOException("CSV file not found at: " + fileName, e);
+            } catch (IOException e) {
+                throw new IOException("Error reading CSV file: " + e.getMessage(), e);
             }
+
 
             System.out.printf("Read %d events from CSV file%n", this.events.size());
         } catch (IOException ioe) {
-            System.out.println("File '" + fileName + "' not found");
+            System.err.println("File '" + fileName + "' not found");
         }
 
-        // Note that if there was an IOException, the list of events
-        // will be empty. It is important to create the list before
-        // any attempts to read from a file!
     }
 
     @Override
