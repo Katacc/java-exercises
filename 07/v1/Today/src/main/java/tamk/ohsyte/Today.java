@@ -37,7 +37,7 @@ public class Today {
         String fileName = "/Users/yuki/.today/events.csv";
         manager.addEventProvider(new CSVEventProvider(fileName));
 
-        fileName = "/Users/yuki/git/second-year-school/ohjelmoinninsyventava/07/singular-events.csv";
+        fileName = "/Users/yuki/git/second-year-school/java/07/singular-events.csv";
         manager.addEventProvider(new CSVEventProvider(fileName));
 
         MonthDay today = MonthDay.now();
@@ -87,28 +87,28 @@ public class Today {
         /*
         Filtering events by Month, Date and year using DateFilter
          */
-        // List<Event> filteredEventsMDY = manager.getFilteredEvents(new DateFilter(MonthDay.parse("--02-21"), 2012));
-        // System.out.println("Date filtered events: (Month, day and year)");
-        // System.out.println("-------------------------------------------------");
-        // printEvents(filteredEventsMDY);
+        //List<Event> filteredEventsMDY = manager.getFilteredEvents(new DateFilter(MonthDay.parse("--02-21"), 2012));
+        //System.out.println("Date filtered events: (Month, day and year)");
+        //System.out.println("-------------------------------------------------");
+        //printEvents(filteredEventsMDY);
 
 
         /*
          * Filtering events by Month and Date using DateFilter
          */
-        // List<Event> filteredEventsMD = manager.getFilteredEvents(new DateFilter(MonthDay.parse("--02-21")));
-        // System.out.println("Date filtered events: (Month and day)");
-        // System.out.println("---------------------------------------");
-        // printEvents(filteredEventsMD);
+        //List<Event> filteredEventsMD = manager.getFilteredEvents(new DateFilter(MonthDay.parse("--02-21")));
+        //System.out.println("Date filtered events: (Month and day)");
+        //System.out.println("---------------------------------------");
+        //printEvents(filteredEventsMD);
 
 
 
         /*
          *  Filtering events by category using CategoryFilter
          */
-        // List<Event> filteredEventsCAT = manager.getFilteredEvents(new CategoryFilter(Category.parse("test")));
-        // System.out.println("Category filtered events: (test)");
-        // System.out.println("--------------------------------------");
+        //List<Event> filteredEventsCAT = manager.getFilteredEvents(new CategoryFilter(Category.parse("society")));
+        //System.out.println("Category filtered events: (test)");
+        //System.out.println("--------------------------------------");
         //printEvents(filteredEventsCAT);
 
 
@@ -116,10 +116,10 @@ public class Today {
         /*
          *  Filtering events by Month, Day, Year and Category with DateCategoryFilter
          */
-        // List<Event> filteredEventsMDYCAT = manager.getFilteredEvents(new DateCategoryFilter(MonthDay.parse("--02-21"), 2012, Category.parse("test")));
-        // System.out.println("Date and Category filtered events: (Month, day, year and test)");
-        // System.out.println("--------------------------------------");
-        // printEvents(filteredEventsMDYCAT);
+        //List<Event> filteredEventsMDYCAT = manager.getFilteredEvents(new DateCategoryFilter(MonthDay.parse("--02-21"), 2012, Category.parse("test")));
+        //System.out.println("Date and Category filtered events: (Month, day, year and test)");
+        //System.out.println("--------------------------------------");
+        //printEvents(filteredEventsMDYCAT);
 
 
 
