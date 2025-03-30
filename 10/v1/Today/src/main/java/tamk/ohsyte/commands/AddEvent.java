@@ -23,13 +23,13 @@ import tamk.ohsyte.datamodel.Category;
 
 @Command(name = "addevent")
 public class AddEvent implements Runnable {
-    @Option(names = "-c", description = "Category to add to event")
+    @Option(names = "-c", description = "Category to add to event", required=true)
     String categoryOptionString;
 
-    @Option(names = "-d", description = "Date for event")
+    @Option(names = "-d", description = "Date for event", required=true)
     String dateOptionString;
 
-    @Option(names = "-s", description = "String to add for the event description")
+    @Option(names = "-s", description = "String to add for the event description", required=true)
     String descriptionOptionString;
 
 
@@ -112,9 +112,6 @@ public class AddEvent implements Runnable {
 
             if (dateOptionString.startsWith("--")) {
 
-                String year = "9999-";
-                String dateString = dateOptionString.substring(2);
-                dateString = year + dateString;
                 date = MonthDay.parse(this.dateOptionString, format).toString();
 
             } else {
@@ -123,6 +120,7 @@ public class AddEvent implements Runnable {
 
         } catch (DateTimeParseException dtpe) {
             System.out.println(dtpe.getMessage());
+            System.err.println("Error in date...");
         }
 
 
